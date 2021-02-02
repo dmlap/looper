@@ -1,0 +1,29 @@
+{
+  "name": "looper",
+  "version": "1.0.0",
+  "description": "Loop a video forever.",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --mode=production --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "video",
+    "hls",
+    "loop",
+    "live",
+    "stream",
+    "repeat",
+    "forever",
+    "m3u8",
+    "media"
+  ],
+  "author": "Dave LaPalomento",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "standard": "^16.0.3",
+    "webpack": "^5.20.0",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
