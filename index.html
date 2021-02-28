@@ -11,15 +11,15 @@
 </head>
 <body>
   <h1>Looper</h1>
-  <h2>A live stream when you don't want to setup a whole frickin' live stream</h2>
+  <h2>A live stream when you <em>just</em> want to do some testing, not build Twitch 2.0</h2>
   <video autoplay 
          controls
          width=768
          height=432
-         src="https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_adv_example_hevc/master.m3u8">
+         src="bipbop-16x9-gear2/prog_index.m3u8">
   </video>
   <p>Keeping a real live stream running is a huge pain. If you want to test something, demo some cool capability, or see how some interesting encoding feature works with a live stream, good luck. At minimum, you're re-reading that gripping live encoder documentation and fighting with your cloud provider of choice to spin up the flavor-of-the-month infrastructure.</p>
-  <p>&hellip;or you could include <code>looper.mjs</code> in your page and let it turn any VOD HLS stream you can find into an infinitely repeating live stream, to enjoy to your heart's content. Your call.</p>
+  <p>&hellip;or you could include <code>looper.mjs</code> in your page and let it turn any VOD HLS stream you can find into an infinitely repeating live stream. Your call.</p>
   <script type="module" src="looper.mjs"></script>
 </body>
 </html>
