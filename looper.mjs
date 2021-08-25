@@ -1,5 +1,5 @@
-navigator.serviceWorker.register('loop-worker.mjs').then((registration) => {
-  console.log('looper registered')
-}).catch((error) => {
-  console.error('looper registration error', error)
+import LoopClient from './src/loop-client.mjs'
+
+new LoopClient().register().catch((error) => {
+  console.error('Failed to register looper', error)
 })
