@@ -76,7 +76,7 @@ export default class HLSLoop {
     const result = cloneM3u8(this._m3u8)
     if (seconds < this._endTimes[0]) {
       // too soon to start looping
-      return result
+      return this._codec.stringify(result)
     }
 
     const loop = Math.floor(seconds / this._totalDuration)

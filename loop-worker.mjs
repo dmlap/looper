@@ -11,13 +11,16 @@ self.addEventListener('fetch', (event) => {
   })
   event.respondWith(fetch(request).then(async (response) => {
     const contentType = response.headers.get('Content-Type')
+
     if (/application\/vnd\.apple\.mpegurl/i.test(contentType)) {
       let loop = loops.get(request.url)
+
       if (!loop) {
         const m3u8 = await response.text()
         loop = new HLSLoop(m3u8)
         loops.set(request.url, loop)
       }
+
       return new Response(loop.render(), {
         status: 200,
         headers: {
@@ -26,6 +29,7 @@ self.addEventListener('fetch', (event) => {
         }
       })
     }
+
     return response
   }))
 })

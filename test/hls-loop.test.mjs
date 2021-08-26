@@ -29,7 +29,11 @@ describe('HLS loop', () => {
   it('strips EXT-X-ENDLIST', () => {
     const looper = new HLSLoop(example.join('\n'))
 
-    const actual = looper._render().split('\n')
+    let actual = looper._render().split('\n')
+    assert.notEqual(actual.slice(-1)[0], example.slice(-1)[0])
+
+    // zero seconds has identical behavior
+    actual = looper._render(0).split('\n')
     assert.notEqual(actual.slice(-1)[0], example.slice(-1)[0])
   })
 
