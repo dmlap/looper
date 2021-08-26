@@ -1,1 +1,1 @@
-Found. Redirecting to /@dmlap/video-looper@1.0.2/dist/looper.mjs
+(()=>{"use strict";(new class{constructor(r="loop-worker.mjs"){this._scriptUrl=r}register(){return navigator.serviceWorker.register(this._scriptUrl)}}).register().catch((r=>{console.error("Failed to register looper",r)}))})();
