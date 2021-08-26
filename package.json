@@ -1,6 +1,6 @@
 {
   "name": "@dmlap/video-looper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Loop a video forever.",
   "main": "index.js",
   "scripts": {
