@@ -2,10 +2,16 @@
   "name": "@dmlap/video-looper",
   "version": "1.0.1",
   "description": "Loop a video forever.",
-  "main": "index.js",
+  "browser": "dist/looper.mjs",
+  "files": [
+    "dist/*"
+  ],
   "scripts": {
+    "build": "webpack --mode=production",
     "start": "webpack serve --mode=production --open",
-    "test": "mocha && standard"
+    "test": "mocha && standard",
+    "prepack": "npm run build",
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "video",

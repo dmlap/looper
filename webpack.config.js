@@ -4,6 +4,7 @@ module.exports = {
     'loop-worker': './loop-worker.mjs'
   },
   output: {
-    filename: '[name].mjs'
+    filename: '[name].mjs',
+    clean: true
   }
 }
