@@ -5,9 +5,19 @@
   <style>
     body {
       font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-      margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 1rem;
+      width: min(47rem, 100%);
     }
+    @supports(padding: max(0px)) {
+      body {
+        padding-right: max(1rem, env(safe-area-inset-right));
+        padding-left: max(1rem, env(safe-area-inset-left));
+      }
+    }
+
     h1 {
       background-color: #004a93;
       color: #fff;
@@ -19,51 +29,89 @@
     h2 {
       text-align: center;
     }
+    .video {
+      position: relative;
+    }
     video {
       display: block;
       margin: 0 auto;
     }
+    .error {
+      background-color: #ffe6c8;
+      color: #9a5719;
+      border-radius: 6px;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      top: 2em;
+      padding: 1em;
+      width: 480px;
+      z-index: 1;
+    }
     main {
       padding: .5em;
     }
-    code, pre {
-      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
     code {
       color: #004a93;
-    }
-    pre {
-      background-color: #131b60;
-      color: #fff;
-      padding: 1em;
-      margin: 1em;
+      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
   </style>
 </head>
 <body>
   <h1>Looper</h1>
-  <h2>A live stream when you <em>just</em> want to do some testing, not build Twitch 2.0</h2>
-  <video autoplay 
-         controls
-         width=640
-         height=360
-         src="bipbop-16x9-gear2/prog_index.m3u8">
-  </video>
+  <h2>A live stream when you <em>just</em> want to do some testing</h2>
+  <div class="video">
+    <video autoplay
+           controls
+           width=640
+           height=360
+           src="bipbop-16x9-gear2/prog_index.m3u8">
+    </video>
+  </div>
   <main>
     <p>
-      Keeping a live stream running is a pain. If you want to just
-      test something or do a demo, it's totally
-      overkill. You <em>could</em> waste your CPU on a local encoder
-      or add yet-another server to restart monthly&hellip; or you
-      could include <code>looper.mjs</code> in your page and let it
-      turn any HLS stream you can find into an infinitely repeating
-      live stream:
+      Keeping a live stream running is a pain. If you just want to
+      mess around or do a demo, it's totally
+      overkill. You <em>could</em> waste your CPU running an encoder
+      locally or add yet-another server to restart every month&hellip;
+      or you could drop in <code>looper</code> and let it turn any HLS
+      stream you can find into an infinitely repeating live
+      stream. It's just two steps:
     </p>
-    <pre>&lt;script type="module" src="looper.mjs"&gt;&lt;/script&gt;</pre>
+    <ol>
+      <li>Drop <code>loop-worker.mjs</code> onto the root of your domain</li>
+      <li>Include <code>looper.mjs</code> in your page before your <code>video</code> element</li>
+    </ol>
     <p>
-      From the perspective of code running on your page, it's the same thing as any other live stream.
+      Check out the
+      <a href="https://github.com/dmlap/looper/blob/main/README.md">README</a>
+      for more detailed instructions. From the perspective of code
+      running on your page, it's the same thing as any other live
+      stream.  That means Looper <a href="examples.html">works
+      seamlessly with any player that supports HLS video</a>.
     </p>
   </main>
   <script type="module" src="looper.mjs"></script>
+  <script>
+    const video = document.querySelector('video')
+
+    function displayError () {
+      const message = document.createElement('p')
+      message.className = 'error'
+      message.innerHTML =
+        `<b>Oops!</b> Looks like your browser doesn't support HLS natively.
+         Check out <a href="examples.html">
+           the examples of Looper with different players that support HLS
+         </a>.`
+      video.parentNode.insertBefore(message, video)
+    }
+
+    if (video.error) {
+      displayError()
+    } else {
+      video.addEventListener('error', displayError)
+    }
+  </script>
 </body>
 </html>
