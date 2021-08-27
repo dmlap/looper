@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+  <title>Looper: The simplest live stream</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 1rem;
+      width: min(47rem, 100%);
+    }
+    @supports(padding: max(0px)) {
+      body {
+        padding-right: max(1rem, env(safe-area-inset-right));
+        padding-left: max(1rem, env(safe-area-inset-left));
+      }
+    }
+
+    h1 {
+      background-color: #004a93;
+      color: #fff;
+    }
+    h2, h1 {
+      margin: 0;
+      padding: .5em;
+    }
+    h2 {
+      text-align: center;
+    }
+    main {
+      padding: .5em;
+    }
+    #jwp-demo, hls-video, .video-js  {
+      display: block;
+      height: 360px;
+      margin: 0 auto;
+      width: 640px;
+    }
+    code {
+      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: #004a93;
+    }
+  </style>
+  <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet" />
+</head>
+<body>
+  <h1>Looper</h1>
+  <main>
+    <script type="module" src="looper.mjs"></script>
+    <script type="module" src="https://unpkg.com/hls-video-element@0.0"></script>
+    <p>Looper is completely transparent to in-page Javascript, so you can use it with any player you like.</p>
+
+    <h2><a href="https://jwplayer.com">JW Player</a></h2>
+    <div id="jwp-demo" itemscope itemtype="https://schema.org/VideoObject">
+      <meta itemprop="uploadDate" content="Thu Aug 26 2021 18:51:00 GMT-0400 (EDT)"/>
+      <meta itemprop="name" content="Bip Bop (Looper GH Pages)"/>
+      <meta itemprop="thumbnailUrl" content="https://cdn.jwplayer.com/thumbs/S09nah8y-720.jpg"/>
+    </div>
+
+    <h2><a href="https://github.com/muxinc/hls-video-element">Media Chrome with HLS.js</a></h2>
+    <hls-video
+      controls
+      src="bipbop-16x9-gear2/prog_index.m3u8"></hls-video>
+
+    <h2><a href="https://videojs.com">VideoJS</a></h2>
+    <video
+      id="vjs-demo"
+      class="video-js"
+      controls
+      preload="auto"
+      width="640"
+      height="360"
+      data-setup="{}">
+      <source src="bipbop-16x9-gear2/prog_index.m3u8" type="application/vnd.apple.mpegurl" />
+    </video>
+  </main>
+  <script src="https://cdn.jwplayer.com/libraries/D8V33ETO.js"></script>
+  <script>
+    jwplayer('jwp-demo').setup({
+      playlist: [{ file: 'bipbop-16x9-gear2/prog_index.m3u8' }]
+    })
+  </script>
+  <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
+</body>
+</html>
