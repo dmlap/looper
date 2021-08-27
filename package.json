@@ -1,6 +1,6 @@
 {
   "name": "@dmlap/video-looper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Loop a video forever.",
   "browser": "dist/looper.mjs",
   "files": [
